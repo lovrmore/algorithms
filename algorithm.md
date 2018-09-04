@@ -194,3 +194,7 @@ def selectionSort(arr):
 
 ## 归纳证明
 
+简要描述
+
+- 与D&C协同发挥作用
+
