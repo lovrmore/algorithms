@@ -266,7 +266,83 @@ $$
 
 ## 图
 
-简要描述：
+简要描述
 
 - 模拟一组连接
 - 由节点和边组成
+
+类别
+
+1. 有向图——节点的关系是单向的
+2. 无向图——直项链的节点互为邻居
+
+## 广度优先搜索
+
+简要描述
+
+- 是一种用于图的查找算法
+
+操作
+
+- 在广度优先搜索的执行过程中，搜索范围从起点开始逐渐向外延伸，即先检查一度关系，再检查二度关系
+
+**p.s.** 检查前要确认是非检查过该元素，避免无限循环
+
+运算时间
+
+$$
+O(V + E)
+$$
+
+V为顶点数，E为边数
+
+代码实现
+
+```python
+from collections import deque
+
+graph = {}
+graph['you'] = ['alice', 'bob', 'claire']
+graph['bob'] = ['anuj', 'peggy']
+graph['alice'] = ['peggy']
+graph['claire'] = ['thom', 'jonny']
+graph['anuj'] = []
+graph['peggy'] = []
+graph['thom'] = []
+graph['jonny'] = []
+
+def person_is_seller(name):
+    return name[-1] == 'm'
+
+def search(name):
+    search_queue = deque()
+    search_queue += graph[name]
+    searched = []
+    while search_queue:
+        person = search_queue.popleft()
+        if not person in searched:
+            if person_is_seller(person):
+                print(person+ ' is a mango seller!')
+                return True
+            else:
+                search_queue += graph[person]
+                searched.append(person)
+    return False
+
+search('you')
+```
+
+## 队列
+
+简要描述
+
+- 队列是一种先进先出（First In First Out，FIFO）的数据结构，而栈是一种后进先出（Last In First Out，LIFO）的数据结构
+
+创建队列(python)
+
+```python
+from collections import deque
+search_queue = deque()
+search_queue += graph['you']
+```
+
