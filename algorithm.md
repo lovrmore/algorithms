@@ -124,7 +124,7 @@ def selectionSort(arr):
     newArr = []
     for i in range(len(arr)):
         smallest = findSmallest(arr)
-        newAee.append(arr.pop(smallest))
+        newArr.append(arr.pop(smallest))
     return newArr
 ```
 
