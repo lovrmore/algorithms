@@ -430,3 +430,43 @@ while node is not None:
     node = find_lowest_cost_node(costs)
 ```
 
+## 近似算法
+
+简要描述
+
+- 在获得精确解需要的时间太长时，可使用近似算法
+
+判断近似算法优劣的标准
+
+1. 速度有多快
+2. 得到的近似解与最优解的接近程度
+
+代码例子
+
+```python
+states_needed = set(['mt', 'wa', 'or', 'id', 'nv', 'ut', 'ca', 'az'])
+
+stations = {}
+stations['kone'] = set(['id', 'nv', 'ut'])
+stations['ktwo'] = set(['wa', 'id', 'mt'])
+stations['kthree'] = set(['or', 'nv', 'ca'])
+stations['kfour'] = set(['nv', 'ut'])
+stations['kfive'] = set(['ca', 'az'])
+
+final_stations = set()
+
+while states_needed:
+    best_station = None
+    states_covered = set()
+    for station, states in stations.items():
+        covered = states_needed & states
+        if len(covered) > len(states_covered):
+            best_station = station
+            states_covered = covered
+
+    states_needed -= states_covered
+    final_stations.add(best_station)
+
+print(final_stations)
+```
+
